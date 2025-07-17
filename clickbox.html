@@ -50,16 +50,31 @@
   <h1>Did you win today? <span class="highlight">Check if you're a winner!</span></h1>
   <p>Every day a limited number of people receive exclusive gifts as part of our big giveaway. Could you be one of them?</p>
 
-  <!-- Картинка (можно заменить на prize.jpg, если хостинг позволяет) -->
   <img src="prize.jpg" alt="Giveaway image">
 
   <p>People from your country have already won: <strong>smartphones, vouchers, cash prizes</strong>.</p>
 
-  <!-- Кнопка с правильно настроенным трекингом для Zeydoo -->
-  <a class="cta" href="https://ldl1.com/link?z=9584135&var=pushhousetest1&ymid={click_id}" target="_blank">
-    Reveal Your Prize
-  </a>
+  <!-- Кнопка (ссылка будет подставлена через JS) -->
+  <a id="cta-button" class="cta" href="#" target="_blank">Reveal Your Prize</a>
 
   <p class="note">* Limited time only. Check availability now.</p>
+
+  <!-- JS: вставляет click_id в ссылку -->
+  <script>
+    const getParam = (name) => {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    };
+
+    const clickId = getParam('click_id');
+    const ctaBtn = document.getElementById('cta-button');
+    if (clickId) {
+      const redirectUrl = `https://ldl1.com/link?z=9584135&var=pushhousetest1&ymid=${clickId}`;
+      ctaBtn.href = redirectUrl;
+    } else {
+      // fallback, если click_id не найден
+      ctaBtn.href = "https://ldl1.com/link?z=9584135&var=pushhousetest1";
+    }
+  </script>
 </body>
 </html>
